@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Partida completa en un emulador Android encendido, contra el Firebase Emulator. Requiere ANDROID_SERIAL si hay varios.
+set -euo pipefail
+cd "$(dirname "$0")/../firebase"
+# emulators:exec usa cmd.exe en Windows.
+gradle=./gradlew
+[[ "$OSTYPE" == msys* ]] && gradle='.\gradlew.bat'
+npx firebase emulators:exec --project demo-scrollparty --only auth,firestore "cd ../android && $gradle connectedDebugAndroidTest --console=plain"

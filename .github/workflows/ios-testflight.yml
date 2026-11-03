@@ -1,0 +1,95 @@
+name: iOS TestFlight
+
+on:
+  workflow_dispatch:
+    inputs:
+      changelog:
+        description: Texto para los testers de TestFlight
+        required: false
+        default: ''
+      force_profile:
+        description: Regenerar el perfil de aprovisionamiento (tras cambiar capacidades)
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write # match guarda certificados cifrados en la rama "certificates"
+
+jobs:
+  test:
+    uses: ./.github/workflows/ios-build-check.yml
+
+  build-and-upload:
+    needs: test
+    runs-on: macos-26
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: false
+          working-directory: ios
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Install fastlane
+        run: bundle install
+
+      - name: Validate configuration
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_API_KEY: ${{ secrets.ASC_API_KEY }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FIREBASE_API_KEY: ${{ vars.FIREBASE_API_KEY }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_IOS_APP_ID }}
+          FIREBASE_SENDER_ID: ${{ vars.FIREBASE_SENDER_ID }}
+        run: |
+          for name in ASC_KEY_ID ASC_ISSUER_ID ASC_API_KEY APPLE_TEAM_ID MATCH_PASSWORD \
+            FIREBASE_API_KEY FIREBASE_PROJECT_ID FIREBASE_APP_ID FIREBASE_SENDER_ID; do
+            if [[ -z "${!name}" ]]; then
+              echo "Falta $name: ver docs/DEPLOY.md" >&2
+              exit 1
+            fi
+          done
+
+      - name: Build and upload to TestFlight
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_API_KEY: ${{ secrets.ASC_API_KEY }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FIREBASE_API_KEY: ${{ vars.FIREBASE_API_KEY }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_IOS_APP_ID }}
+          FIREBASE_SENDER_ID: ${{ vars.FIREBASE_SENDER_ID }}
+          TESTFLIGHT_CHANGELOG: ${{ github.event.inputs.changelog }}
+          FORCE_PROFILE: ${{ github.event.inputs.force_profile }}
+          FASTLANE_DISABLE_COLORS: '1'
+          FASTLANE_SKIP_UPDATE_CHECK: '1'
+        run: |
+          export BUILD_NUMBER="$(date -u +%Y%m%d%H%M)"
+          bundle exec fastlane ios beta
+
+      - name: Save signed IPA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ScrollParty-ipa
+          path: 'ios/*.ipa'
+          if-no-files-found: ignore
+          retention-days: 3

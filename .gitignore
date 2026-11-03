@@ -1,1 +1,15 @@
 .claude/worktrees/
+node_modules/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+*.xcodeproj/
+ios/build/
+ios/*.ipa
+ios/fastlane/report.xml
+ios/fastlane/README.md
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/local.properties

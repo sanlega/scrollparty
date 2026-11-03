@@ -1,3 +1,19 @@
 #!/usr/bin/env bash
-echo "TODO: definir verify"
-exit 0
+# Reglas de Firestore + Android. iOS solo compila en macOS: en Windows lo verifica ios-build-check.yml.
+# Si los emuladores de Firebase ya están encendidos, párelos antes: usan los mismos puertos.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "== Reglas de Firestore =="
+(cd firebase && npm test)
+
+echo "== Android: tests y APK =="
+(cd android && ./gradlew testDebugUnitTest assembleDebug --console=plain)
+
+if command -v xcodebuild >/dev/null; then
+  echo "== iOS =="
+  (cd ios && xcodegen generate && xcodebuild -project ScrollParty.xcodeproj -scheme ScrollParty \
+    -destination 'platform=iOS Simulator,name=iPhone 17' -skipPackagePluginValidation -skipMacroValidation -quiet test)
+else
+  echo "== iOS: OMITIDO en esta máquina; lo verifica GitHub Actions =="
+fi
