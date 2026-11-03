@@ -1,0 +1,99 @@
+require "base64"
+require "securerandom"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Firma, compila y sube un build interno a TestFlight"
+  lane :beta do
+    app_id = "com.santilega.scrollparty"
+    team_id = ENV.fetch("APPLE_TEAM_ID")
+    build_number = ENV.fetch("BUILD_NUMBER")
+    profile = "match AppStore #{app_id}"
+    keychain = "scrollparty_ci"
+
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_content: ENV.fetch("ASC_API_KEY"),
+      is_key_content_base64: false
+    )
+
+    Spaceship::ConnectAPI.token = Spaceship::ConnectAPI::Token.create(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key: ENV.fetch("ASC_API_KEY")
+    )
+    if Spaceship::ConnectAPI::BundleId.find(app_id).nil?
+      UI.important("Registrando el bundle id #{app_id}")
+      Spaceship::ConnectAPI::BundleId.create(name: "ScrollParty", platform: "IOS", identifier: app_id)
+    end
+
+    keychain_password = SecureRandom.hex(32)
+    create_keychain(
+      name: keychain,
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
+    )
+
+    match(
+      type: "appstore",
+      app_identifier: [app_id],
+      api_key: api_key,
+      team_id: team_id,
+      storage_mode: "git",
+      git_url: "https://github.com/#{ENV.fetch('GITHUB_REPOSITORY')}.git",
+      git_branch: "certificates",
+      git_basic_authorization: Base64.strict_encode64("x-access-token:#{ENV.fetch('GITHUB_TOKEN')}"),
+      git_full_name: "ScrollParty CI",
+      git_user_email: "ci@users.noreply.github.com",
+      keychain_name: keychain,
+      keychain_password: keychain_password,
+      readonly: false,
+      force: ENV["FORCE_PROFILE"].to_s == "true"
+    )
+
+    update_code_signing_settings(
+      path: "ScrollParty.xcodeproj",
+      use_automatic_signing: false,
+      targets: ["ScrollParty"],
+      build_configurations: ["Release"],
+      team_id: team_id,
+      code_sign_identity: "Apple Distribution",
+      profile_name: profile,
+      bundle_identifier: app_id
+    )
+
+    firebase = {
+      "FIREBASE_API_KEY" => ENV.fetch("FIREBASE_API_KEY"),
+      "FIREBASE_PROJECT_ID" => ENV.fetch("FIREBASE_PROJECT_ID"),
+      "FIREBASE_APP_ID" => ENV.fetch("FIREBASE_APP_ID"),
+      "FIREBASE_SENDER_ID" => ENV.fetch("FIREBASE_SENDER_ID")
+    }.map { |key, value| "#{key}=#{value}" }.join(" ")
+
+    ipa = build_app(
+      project: "ScrollParty.xcodeproj",
+      scheme: "ScrollParty",
+      configuration: "Release",
+      clean: true,
+      export_method: "app-store",
+      export_team_id: team_id,
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: { app_id => profile }
+      },
+      xcargs: "CURRENT_PROJECT_VERSION=#{build_number} #{firebase}"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: app_id,
+      ipa: ipa,
+      skip_waiting_for_build_processing: false,
+      distribute_external: false,
+      changelog: ENV.fetch("TESTFLIGHT_CHANGELOG", "Build #{build_number} de ScrollParty.")
+    )
+  end
+end

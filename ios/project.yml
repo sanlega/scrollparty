@@ -1,0 +1,94 @@
+# Proyecto generado con XcodeGen (brew install xcodegen && xcodegen generate).
+# No se commitea el .xcodeproj: la CI lo genera en cada build.
+name: ScrollParty
+options:
+  bundleIdPrefix: com.santilega
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "26.0"
+  createIntermediateGroups: true
+
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 13.1.1
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    # Vacío = Firebase Emulator (proyecto demo). TestFlight los recibe de las variables del repo.
+    FIREBASE_API_KEY: ""
+    FIREBASE_PROJECT_ID: ""
+    FIREBASE_APP_ID: ""
+    FIREBASE_SENDER_ID: ""
+
+targets:
+  ScrollParty:
+    type: application
+    platform: iOS
+    sources:
+      - path: ScrollParty
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+    info:
+      path: ScrollParty/Info.plist
+      properties:
+        CFBundleDisplayName: ScrollParty
+        CFBundleName: ScrollParty
+        CFBundleDevelopmentRegion: en
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        FirebaseAPIKey: $(FIREBASE_API_KEY)
+        FirebaseProjectID: $(FIREBASE_PROJECT_ID)
+        FirebaseAppID: $(FIREBASE_APP_ID)
+        FirebaseSenderID: $(FIREBASE_SENDER_ID)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.santilega.scrollparty
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+        OTHER_LDFLAGS: "$(inherited) -ObjC"
+
+  ScrollPartyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: ScrollPartyTests
+    dependencies:
+      - target: ScrollParty
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.santilega.scrollparty.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+
+schemes:
+  ScrollParty:
+    build:
+      targets:
+        ScrollParty: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - ScrollPartyTests
+    archive:
+      config: Release
