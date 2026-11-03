@@ -22,5 +22,5 @@ los ven en la tele mientras adivinan quién mandó cada uno. Spec de producto: `
 ## Gotchas
 - No se descargan vídeos: solo se guardan enlaces. Instagram no se embebe bien → validar reproducción con prototipo.
 - La tele es duplicado de pantalla (AirPlay / Cast), no hay que implementar casting.
-- iOS no se puede compilar desde Windows: cada cambio se comprueba en GitHub Actions, que en repo privado gasta minutos de macOS (cuentan x10).
+- iOS no se puede compilar desde Windows: cada cambio se comprueba en GitHub Actions.
 - El puerto 8080 del PC está ocupado por otro proceso: por eso Firestore usa el 8180.
