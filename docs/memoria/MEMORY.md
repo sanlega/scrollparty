@@ -1,0 +1,2 @@
+- [Santi](user-santi.md) — español, Mac + iPhone, flujo santi-mvp
+- [ScrollParty](project-app-reels-fiesta.md) — nativo iOS+Android, Firebase, spec en docs/spec/producto.md
