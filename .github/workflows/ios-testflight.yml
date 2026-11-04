@@ -64,6 +64,11 @@ jobs:
               exit 1
             fi
           done
+          # Un espacio o  invisible en estos valores hace abortar a Firebase al abrir la app.
+          [[ "$FIREBASE_APP_ID" =~ ^1:[0-9]+:ios:[0-9a-f]+$ ]] || { echo "FIREBASE_IOS_APP_ID no es válido" >&2; exit 1; }
+          [[ "$FIREBASE_SENDER_ID" =~ ^[0-9]+$ ]] || { echo "FIREBASE_SENDER_ID no es válido" >&2; exit 1; }
+          [[ "$FIREBASE_API_KEY" =~ ^AIza[0-9A-Za-z_-]+$ ]] || { echo "FIREBASE_API_KEY no es válido" >&2; exit 1; }
+          [[ "$FIREBASE_PROJECT_ID" =~ ^[a-z0-9-]+$ ]] || { echo "FIREBASE_PROJECT_ID no es válido" >&2; exit 1; }
 
       - name: Build and upload to TestFlight
         env:

@@ -44,6 +44,32 @@ jobs:
             -quiet \
             test
 
+      - name: Launch the app against production Firebase
+        env:
+          FIREBASE_API_KEY: ${{ vars.FIREBASE_API_KEY }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_IOS_APP_ID }}
+          FIREBASE_SENDER_ID: ${{ vars.FIREBASE_SENDER_ID }}
+        run: |
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for group in d["devices"].values() for v in group if v["name"].startswith("iPhone")))')
+          xcodebuild             -project ScrollParty.xcodeproj             -scheme ScrollParty             -configuration Debug             -destination "platform=iOS Simulator,id=$DEVICE_ID"             -derivedDataPath build/launch             -skipPackagePluginValidation             -skipMacroValidation             CODE_SIGN_IDENTITY=-             FIREBASE_API_KEY="$FIREBASE_API_KEY"             FIREBASE_PROJECT_ID="$FIREBASE_PROJECT_ID"             FIREBASE_APP_ID="$FIREBASE_APP_ID"             FIREBASE_SENDER_ID="$FIREBASE_SENDER_ID"             -quiet             build
+          xcrun simctl boot "$DEVICE_ID" || true
+          xcrun simctl bootstatus "$DEVICE_ID"
+          xcrun simctl install "$DEVICE_ID" build/launch/Build/Products/Debug-iphonesimulator/ScrollParty.app
+          xcrun simctl launch "$DEVICE_ID" com.santilega.scrollparty
+          sleep 20
+          xcrun simctl io "$DEVICE_ID" screenshot build/launch.png
+          pgrep -x ScrollParty || { echo 'La app se ha cerrado al arrancar' >&2; exit 1; }
+
+      - name: Save launch screenshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-launch-screenshot
+          path: ios/build/launch.png
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Print test summary
         if: always()
         run: |
