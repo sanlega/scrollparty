@@ -62,7 +62,7 @@ private struct SecretVotePanel: View {
                         }
                     }
                     .padding(.top, Space.s1)
-                    LinkButton("Back", action: onClose)
+                    LinkButton(title: "Back", action: onClose)
                 }
                 .padding(.horizontal, Space.margin)
                 .padding(.vertical, Space.s3)
