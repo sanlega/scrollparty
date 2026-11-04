@@ -1,0 +1,77 @@
+name: iOS App Store screens
+
+on:
+  pull_request:
+    paths: ['ios/ScrollParty/Demo.swift', '.github/workflows/ios-appstore-screens.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: macos-26
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: ios
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Xcode project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Build for the simulator
+        run: |
+          xcodebuild \
+            -project ScrollParty.xcodeproj \
+            -scheme ScrollParty \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/store \
+            -skipPackagePluginValidation \
+            -skipMacroValidation \
+            CODE_SIGN_IDENTITY=- \
+            -quiet \
+            build
+
+      - name: Capture every screen on iPhone and iPad, in English and Spanish
+        run: |
+          find_device() {
+            xcrun simctl list devices available -j | python3 -c '
+          import json, sys
+          wanted = sys.argv[1]
+          devices = json.load(sys.stdin)["devices"]
+          print(next(d["udid"] for group in devices.values() for d in group if d["name"].startswith(wanted)))
+          ' "$1"
+          }
+          APP=build/store/Build/Products/Debug-iphonesimulator/ScrollParty.app
+          for pair in "iphone:iPhone 17 Pro Max" "ipad:iPad Pro 13"; do
+            label="${pair%%:*}"
+            DEVICE_ID=$(find_device "${pair#*:}")
+            xcrun simctl boot "$DEVICE_ID"
+            xcrun simctl bootstatus "$DEVICE_ID"
+            xcrun simctl status_bar "$DEVICE_ID" override --time 9:41 --batteryState charged --batteryLevel 100 --wifiBars 3 --cellularBars 4
+            xcrun simctl install "$DEVICE_ID" "$APP"
+            for lang in en es; do
+              mkdir -p "build/screens/$label/$lang"
+              for screen in onboarding selfie lobby stage secret pick yours reveal final; do
+                xcrun simctl terminate "$DEVICE_ID" com.santilega.scrollparty || true
+                xcrun simctl launch "$DEVICE_ID" com.santilega.scrollparty -AppleLanguages "($lang)" -AppleLocale "$lang" -demoScreen "$screen"
+                sleep 7
+                xcrun simctl io "$DEVICE_ID" screenshot "build/screens/$label/$lang/$screen.png"
+              done
+            done
+            xcrun simctl shutdown "$DEVICE_ID"
+          done
+
+      - name: Save the screens
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appstore-screens
+          path: ios/build/screens
+          if-no-files-found: error
+          retention-days: 14
