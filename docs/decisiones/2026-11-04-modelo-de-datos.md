@@ -5,9 +5,9 @@ Sin Cloud Functions, para quedarnos en el plan gratuito Spark. Las dos apps impl
 
 ```
 groups/{code}            adminId, status (collecting|playing|finished), roundIds[], roundIndex
-  members/{uid}          name, emoji, count (enlaces en la bolsa), joinedAt
-  links/{id}             url, authorId          ← solo los ve su autor; en sesión, también el anfitrión
-  rounds/{linkId}        url, authorId (null hasta revelar), votes {uid: uidAdivinado}
+  members/{uid}          name, emoji, color (0-11), photo (JPEG base64, opcional), count, joinedAt
+  links/{id}             url, authorId, clue (opcional)  ← solo los ve su autor; en sesión, también el anfitrión
+  rounds/{linkId}        url, clue, authorId (null hasta revelar), votes {uid: uidAdivinado}, reactions {uid: laugh|skull|fire|sleep}
 ```
 
 - El **código** de 6 caracteres es el id del grupo.
@@ -17,6 +17,9 @@ groups/{code}            adminId, status (collecting|playing|finished), roundIds
 - **Revelar:** el anfitrión copia `authorId` a la ronda; desde ahí las reglas ya no aceptan votos.
 - **La puntuación no se guarda:** cada móvil la calcula a partir de las rondas reveladas.
 - Votos esperados en una ronda: miembros − 1 (el autor no vota).
+
+- La **selfie** es una miniatura de 256 px en base64 (máximo 40 000 caracteres) dentro del miembro: evita Storage y el plan de pago.
+- Una **reacción** por jugador y ronda; cambiarla vuelve a lanzarla en la tele.
 
 **Coste asumido:** el móvil del anfitrión tiene acceso a los autores, así que un anfitrión con conocimientos
 podría hacer trampa, y otro miembro podría escribir un `count` falso. Para un juego entre amigos no compensa

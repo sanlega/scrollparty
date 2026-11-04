@@ -1,0 +1,149 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Couldn't reach the party. Check your connection and try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo llegar a la fiesta. Revisa tu conexión e inténtalo de nuevo."
+          }
+        }
+      }
+    },
+    "That isn't an Instagram, TikTok or YouTube link.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eso no es un enlace de Instagram, TikTok o YouTube."
+          }
+        }
+      }
+    },
+    "Open ScrollParty and join a party first.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre ScrollParty y únete primero a una fiesta."
+          }
+        }
+      }
+    },
+    "Sharing isn't available in this build.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir no está disponible en esta versión."
+          }
+        }
+      }
+    },
+    "The party has already started.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La fiesta ya ha empezado."
+          }
+        }
+      }
+    },
+    "Couldn't add the reel. The party may have changed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo añadir el reel. Puede que la fiesta haya cambiado."
+          }
+        }
+      }
+    },
+    "Your session expired. Open ScrollParty and try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu sesión ha caducado. Abre ScrollParty e inténtalo de nuevo."
+          }
+        }
+      }
+    },
+    "That party no longer exists.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esa fiesta ya no existe."
+          }
+        }
+      }
+    },
+    "Adding to the machine…": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metiendo en la máquina…"
+          }
+        }
+      }
+    },
+    "In the machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la máquina"
+          }
+        }
+      }
+    },
+    "Party %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fiesta %@"
+          }
+        }
+      }
+    },
+    "Not added": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No añadido"
+          }
+        }
+      }
+    },
+    "Close": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

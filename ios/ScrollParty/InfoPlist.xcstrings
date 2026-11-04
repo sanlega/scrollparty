@@ -1,0 +1,17 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSCameraUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ScrollParty usa la cámara para hacerte el selfie."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

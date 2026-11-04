@@ -31,7 +31,10 @@ targets:
     platform: iOS
     sources:
       - path: ScrollParty
+      # Código compartido con la extensión de compartir (regex del enlace y llavero).
+      - path: Shared
     dependencies:
+      - target: ScrollPartyShare
       - package: Firebase
         product: FirebaseAuth
       - package: Firebase
@@ -42,6 +45,7 @@ targets:
         CFBundleDisplayName: ScrollParty
         CFBundleName: ScrollParty
         CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, es]
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSRequiresIPhoneOS: true
@@ -54,10 +58,24 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+        UIAppFonts:
+          - BowlbyOne-Regular.ttf
+          - DMSans-Medium.ttf
+          - DMSans-Bold.ttf
+        NSCameraUsageDescription: ScrollParty uses the camera to take your selfie.
         FirebaseAPIKey: $(FIREBASE_API_KEY)
         FirebaseProjectID: $(FIREBASE_PROJECT_ID)
         FirebaseAppID: $(FIREBASE_APP_ID)
         FirebaseSenderID: $(FIREBASE_SENDER_ID)
+        # Prefijo del equipo ("TEAMID."), necesario para el grupo de llavero compartido con la extensión.
+        AppIdentifierPrefix: $(AppIdentifierPrefix)
+    entitlements:
+      path: ScrollParty/ScrollParty.entitlements
+      properties:
+        # El primero es el grupo por defecto (donde Firebase ya guarda la sesión); el segundo lo comparte con la extensión.
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.santilega.scrollparty
+          - $(AppIdentifierPrefix)com.santilega.scrollparty.shared
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.santilega.scrollparty
@@ -66,6 +84,60 @@ targets:
         CODE_SIGN_STYLE: Automatic
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
         OTHER_LDFLAGS: "$(inherited) -ObjC"
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+
+  # «Compartir» desde Instagram, TikTok o YouTube. Sin SDK de Firebase: habla con Firestore por REST.
+  ScrollPartyShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ScrollPartyShare
+      - path: Shared
+      - path: ScrollParty/Fonts
+      - path: ScrollParty/DesignSystem/Tokens.swift
+      - path: ScrollParty/DesignSystem/Motion.swift
+      - path: ScrollParty/DesignSystem/PrimaryButton.swift
+      - path: ScrollParty/DesignSystem/DisplayTitle.swift
+    info:
+      path: ScrollPartyShare/Info.plist
+      properties:
+        CFBundleDisplayName: ScrollParty
+        CFBundleName: ScrollPartyShare
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, es]
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UIAppFonts:
+          - BowlbyOne-Regular.ttf
+          - DMSans-Medium.ttf
+          - DMSans-Bold.ttf
+        AppIdentifierPrefix: $(AppIdentifierPrefix)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsText: true
+    entitlements:
+      path: ScrollPartyShare/ScrollPartyShare.entitlements
+      properties:
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.santilega.scrollparty.shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.santilega.scrollparty.share
+        PRODUCT_NAME: ScrollPartyShare
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SKIP_INSTALL: "YES"
+        CODE_SIGN_STYLE: Automatic
+        APPLICATION_EXTENSION_API_ONLY: "YES"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks"
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
 
   ScrollPartyTests:
     type: bundle.unit-test
