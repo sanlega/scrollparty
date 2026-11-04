@@ -18,18 +18,38 @@ struct DemoRoot: View {
     }
 }
 
-/// Selfie falso: fondo gris, cuerpo y cabeza.
-private func demoPhoto(_ shade: CGFloat) -> String? {
+/// Selfie falso: un personaje dibujado, sin fotos de personas reales.
+private func demoPhoto(_ look: Int) -> String? {
     let size = CGSize(width: 256, height: 256)
     let format = UIGraphicsImageRendererFormat()
     format.scale = 1
     let image = UIGraphicsImageRenderer(size: size, format: format).image { context in
-        UIColor(white: 0.85, alpha: 1).setFill()
-        context.fill(CGRect(origin: .zero, size: size))
-        UIColor(white: shade, alpha: 1).setFill()
-        context.cgContext.fillEllipse(in: CGRect(x: 30, y: 170, width: 196, height: 160))
-        UIColor(white: 0.97, alpha: 1).setFill()
-        context.cgContext.fillEllipse(in: CGRect(x: 78, y: 50, width: 100, height: 112))
+        let c = context.cgContext
+        let ink = UIColor(white: 0.08, alpha: 1)
+        UIColor(white: 0.82, alpha: 1).setFill()
+        c.fill(CGRect(origin: .zero, size: size))
+        ink.setFill()
+        c.fillEllipse(in: CGRect(x: 26, y: 176, width: 204, height: 170))
+        if look % 3 == 1 { c.fillEllipse(in: CGRect(x: 58, y: 44, width: 140, height: 190)) }
+        UIColor(white: 0.98, alpha: 1).setFill()
+        c.fillEllipse(in: CGRect(x: 72, y: 62, width: 112, height: 124))
+        ink.setFill()
+        switch look % 3 {
+        case 0:
+            c.fillEllipse(in: CGRect(x: 66, y: 44, width: 124, height: 70))
+        case 1:
+            c.fillEllipse(in: CGRect(x: 88, y: 48, width: 80, height: 38))
+        default:
+            c.fill(CGRect(x: 60, y: 70, width: 136, height: 14))
+            c.fillEllipse(in: CGRect(x: 80, y: 34, width: 96, height: 48))
+        }
+        c.fillEllipse(in: CGRect(x: 104, y: 118, width: 12, height: 12))
+        c.fillEllipse(in: CGRect(x: 140, y: 118, width: 12, height: 12))
+        ink.setStroke()
+        c.setLineWidth(8)
+        c.setLineCap(.round)
+        c.addArc(center: CGPoint(x: 128, y: 138), radius: 22, startAngle: .pi * 0.2, endAngle: .pi * 0.8, clockwise: false)
+        c.strokePath()
     }
     return encodePhoto(image)
 }
@@ -40,12 +60,12 @@ extension GameModel {
         let me = "u5"
         model.uid = me
         model.members = [
-            Member(id: "u1", name: "Ana", color: 0, photo: demoPhoto(0.2), count: 3, joinedAt: 1),
-            Member(id: "u2", name: "Leo", color: 1, photo: demoPhoto(0.4), count: 2, joinedAt: 2),
-            Member(id: "u3", name: "Marta", color: 2, photo: nil, count: 1, joinedAt: 3),
-            Member(id: "u4", name: "Nico", color: 3, photo: demoPhoto(0.1), count: 2, joinedAt: 4),
-            Member(id: "u5", name: "Iker", color: 5, photo: demoPhoto(0.3), count: 3, joinedAt: 5),
-            Member(id: "u6", name: "Sara", color: 4, photo: nil, count: 1, joinedAt: 6),
+            Member(id: "u1", name: "Ana", color: 0, photo: demoPhoto(1), count: 3, joinedAt: 1),
+            Member(id: "u2", name: "Leo", color: 1, photo: demoPhoto(2), count: 2, joinedAt: 2),
+            Member(id: "u3", name: "Marta", color: 2, photo: demoPhoto(3), count: 1, joinedAt: 3),
+            Member(id: "u4", name: "Nico", color: 3, photo: demoPhoto(4), count: 2, joinedAt: 4),
+            Member(id: "u5", name: "Iker", color: 5, photo: demoPhoto(5), count: 3, joinedAt: 5),
+            Member(id: "u6", name: "Sara", color: 4, photo: demoPhoto(6), count: 1, joinedAt: 6),
         ]
         let url = "https://www.instagram.com/reel/demo/"
         let ids = ["r1", "r2", "r3", "r4", "r5"]
@@ -58,7 +78,7 @@ extension GameModel {
             Round(id: "r3", url: url, authorId: "u3", votes: ["u1": "u3", "u2": "u1", "u4": "u3", "u5": "u6", "u6": "u3"],
                   clue: "", reactions: [:]),
             Round(id: "r4", url: url, authorId: nil, votes: ["u1": "u2", "u2": "u1", "u3": "u2"],
-                  clue: "my mum sent me this", reactions: ["u1": "laugh", "u3": "fire"]),
+                  clue: Locale.current.language.languageCode?.identifier == "es" ? "me lo pasó mi madre" : "my mum sent me this", reactions: ["u1": "laugh", "u3": "fire"]),
             Round(id: "r5", url: url, authorId: "u5", votes: ["u1": "u5", "u2": "u4", "u3": "u5", "u4": "u5", "u6": "u1"],
                   clue: "", reactions: ["u2": "skull"]),
         ]
@@ -78,7 +98,7 @@ extension GameModel {
             adminId = me
             rounds[3] = Round(
                 id: "r4", url: url, authorId: "u2", votes: ["u1": "u2", "u2": "u1", "u3": "u4", "u4": "u2", "u5": "u2", "u6": "u3"],
-                clue: "my mum sent me this", reactions: ["u1": "laugh"]
+                clue: Locale.current.language.languageCode?.identifier == "es" ? "me lo pasó mi madre" : "my mum sent me this", reactions: ["u1": "laugh"]
             )
         case "final":
             status = "finished"
