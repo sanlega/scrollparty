@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="loading">Cargando…</string>
+
+    <!-- Onboarding -->
+    <string name="step_of">Paso %1$d de %2$d</string>
+    <string name="skip">Saltar</string>
+    <string name="next">Siguiente</string>
+    <string name="get_started">Empezar</string>
+    <string name="onb1_title">Alimenta la máquina</string>
+    <string name="onb1_body">Comparte cualquier reel, TikTok o Short con la fiesta. Nadie ve lo que mandaste.</string>
+    <string name="onb2_title">Se ve en tu tele</string>
+    <string name="onb2_body">Duplica la pantalla del móvil del anfitrión en la tele. Los reels salen uno a uno, en orden aleatorio.</string>
+    <string name="onb3_title">Desliza hasta tu sospechoso</string>
+    <string name="onb3_body">¿Quién lo mandó? Elige en tu móvil. Acertar o engañar a tus amigos da tiques.</string>
+    <string name="onb4_title">Un toque desde cualquier app</string>
+    <string name="onb4_body">¿Algo bueno? Toca Compartir y luego ScrollParty. Llega a tu fiesta al instante.</string>
+    <string name="onb_ticket">+1 tique</string>
+    <string name="reels_in_machine">reels en la máquina</string>
+
+    <!-- Selfie y nombre -->
+    <string name="profile_title">Sonríe a la máquina</string>
+    <string name="profile_subtitle">Tu cara sale en los reels.</string>
+    <string name="your_name">Tu nombre</string>
+    <string name="name_required">Primero escribe tu nombre</string>
+    <string name="take_photo">Hacer foto</string>
+    <string name="choose_gallery">Elegir de la galería</string>
+    <string name="use_initials">Seguir con mis iniciales</string>
+    <string name="looks_good">Se ve bien</string>
+    <string name="retake">Repetir</string>
+    <string name="your_photo">Tu foto</string>
+    <string name="your_initials">Tus iniciales</string>
+    <string name="camera_unavailable">No hay app de cámara. Elige una foto de la galería.</string>
+    <string name="photo_failed">No se pudo leer esa foto</string>
+
+    <!-- Inicio -->
+    <string name="home_tagline">Mete tus mejores reels en la bolsa. Adivina quién mandó cada uno.</string>
+    <string name="hello_name">Hola, %s</string>
+    <string name="create_party">Crear una fiesta</string>
+    <string name="join_party">Unirme</string>
+    <string name="party_code">Código de la fiesta</string>
+
+    <!-- Máquina -->
+    <string name="invite">Invitar</string>
+    <string name="invite_text">¡Únete a mi ScrollParty! Código de la fiesta: %1$s</string>
+    <string name="invite_chooser">Invitar amigos</string>
+    <plurals name="players">
+        <item quantity="one">%d jugador</item>
+        <item quantity="other">%d jugadores</item>
+    </plurals>
+    <string name="reels_sent">Reels enviados</string>
+    <string name="you">Tú</string>
+    <string name="host">Anfitrión</string>
+    <string name="add_reel">Añadir un reel</string>
+    <string name="reel_link_label">Pega un reel, TikTok o Short</string>
+    <string name="clue_label">Pista anónima (opcional)</string>
+    <string name="add_to_machine">Meter en la máquina</string>
+    <string name="your_reels">Tus reels</string>
+    <string name="remove">Quitar</string>
+    <string name="remove_reel">Quitar %s</string>
+    <string name="start_party">Empezar la fiesta</string>
+    <string name="need_players">Hacen falta al menos 2 jugadores y 1 reel para empezar.</string>
+    <string name="waiting_host">Esperando a que el anfitrión empiece…</string>
+    <string name="machine_getting_ready">Preparando la máquina…</string>
+    <string name="retry">Reintentar</string>
+
+    <!-- Tele -->
+    <string name="reel_of">Reel %1$d de %2$d</string>
+    <string name="reel_of_watch">Reel %1$d de %2$d · mira la tele</string>
+    <string name="voted_of">%1$d de %2$d han votado</string>
+    <string name="play_reel">Reproducir reel</string>
+    <string name="cast_vote">Emite tu voto secreto</string>
+    <string name="vote_in">Voto registrado · Cambiar</string>
+    <string name="secret_vote">Voto secreto</string>
+    <string name="secret_vote_hint">Aquí nada muestra a quién elegiste.</string>
+    <string name="vote_for">Votar a %s</string>
+    <string name="reveal_who">Revelar el autor</string>
+    <string name="no_app_for_link">Ninguna app puede abrir este enlace</string>
+
+    <!-- Elegir, es tuyo y reacciones -->
+    <string name="clue_card_label">Pista anónima</string>
+    <string name="who_sent_it">¿Quién lo mandó?</string>
+    <string name="choose_who">Elige quién lo mandó</string>
+    <string name="my_guess">Es mi respuesta</string>
+    <string name="guess_locked">%s elegido · Cambiar</string>
+    <string name="this_ones_yours">Este es tuyo</string>
+    <string name="yours_body">Sin voto esta ronda. Pon cara de póker y haz como que te sorprendes.</string>
+    <string name="react_laugh">Reaccionar: risa</string>
+    <string name="react_skull">Reaccionar: calavera</string>
+    <string name="react_fire">Reaccionar: fuego</string>
+    <string name="react_sleep">Reaccionar: sueño</string>
+
+    <!-- Revelado -->
+    <string name="author_reveal">¡%s!</string>
+    <string name="reveal_right">Acertaste · +1 tique</string>
+    <string name="reveal_wrong">¡Te engañó! Sin tique esta vez</string>
+    <plurals name="reveal_mine">
+        <item quantity="one">Engañaste a %1$d amigo · +%1$d tique</item>
+        <item quantity="other">Engañaste a %1$d amigos · +%1$d tiques</item>
+    </plurals>
+    <string name="right">Acierto</string>
+    <string name="fooled">Engañado</string>
+    <string name="guessed">votó a %s</string>
+    <string name="next_reel">Siguiente reel</string>
+    <string name="see_final">Ver tiques finales</string>
+    <string name="waiting_next">Esperando al anfitrión…</string>
+
+    <!-- Final -->
+    <string name="final_title">Tiques finales</string>
+    <string name="prize_detective">Mejor detective</string>
+    <string name="prize_bluffer">Rey del engaño</string>
+    <string name="prize_reel">Reel de la noche</string>
+    <string name="tickets_count">%1$s: %2$d tiques</string>
+
+    <!-- Compartir y errores -->
+    <string name="shared_title">En la máquina ✓</string>
+    <string name="shared_detail">Fiesta %s</string>
+    <string name="share_no_party">Primero crea una fiesta o únete a una y luego vuelve a compartir.</string>
+    <string name="share_not_collecting">La fiesta ya empezó. Solo se pueden añadir reels antes de que el anfitrión empiece.</string>
+    <string name="share_no_link">Eso no parece un enlace de Instagram, TikTok o YouTube.</string>
+    <string name="shortcut_long">ScrollParty · %s</string>
+    <string name="error_generic">Algo ha fallado</string>
+    <string name="error_no_group">No existe ninguna fiesta con el código %s</string>
+    <string name="error_link">Pega un enlace de Instagram, TikTok o YouTube</string>
+</resources>

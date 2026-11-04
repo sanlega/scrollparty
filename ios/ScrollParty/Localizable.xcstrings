@@ -1,0 +1,963 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Laugh": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risa"
+          }
+        }
+      }
+    },
+    "Dead": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muerto"
+          }
+        }
+      }
+    },
+    "Fire": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuego"
+          }
+        }
+      }
+    },
+    "Boring": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aburrido"
+          }
+        }
+      }
+    },
+    "React live on the TV": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reacciona en directo en la tele"
+          }
+        }
+      }
+    },
+    "Step %lld of %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paso %lld de %lld"
+          }
+        }
+      }
+    },
+    "Anonymous clue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pista anónima"
+          }
+        }
+      }
+    },
+    "Choose who sent it": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige quién lo mandó"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saltar"
+          }
+        }
+      }
+    },
+    "Get started": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        }
+      }
+    },
+    "Next": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente"
+          }
+        }
+      }
+    },
+    "reels in the machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "reels en la máquina"
+          }
+        }
+      }
+    },
+    "+1 ticket": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+1 tique"
+          }
+        }
+      }
+    },
+    "Feed the machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimenta la máquina"
+          }
+        }
+      }
+    },
+    "It plays on your TV": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suena en tu tele"
+          }
+        }
+      }
+    },
+    "Scroll to your suspect": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desliza hasta tu sospechoso"
+          }
+        }
+      }
+    },
+    "One tap from any app": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un toque desde cualquier app"
+          }
+        }
+      }
+    },
+    "Share any reel, TikTok or Short to the party. Nobody sees what you sent.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comparte cualquier reel, TikTok o Short con la fiesta. Nadie ve lo que mandaste."
+          }
+        }
+      }
+    },
+    "Mirror the host’s phone to the TV. Reels play one by one, in random order.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplica la pantalla del móvil del anfitrión en la tele. Los reels salen uno a uno, en orden aleatorio."
+          }
+        }
+      }
+    },
+    "Who sent it? Pick on your own phone. Right guesses and fooled friends win tickets.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quién lo mandó? Elige en tu propio móvil. Acertar y engañar a tus amigos da tiques."
+          }
+        }
+      }
+    },
+    "See something good? Tap Share, then ScrollParty. It lands in your party instantly.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Has visto algo bueno? Toca Compartir y luego ScrollParty. Llega a tu fiesta al instante."
+          }
+        }
+      }
+    },
+    "Smile for the machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sonríe a la máquina"
+          }
+        }
+      }
+    },
+    "Your face goes on the reels.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cara sale en los reels."
+          }
+        }
+      }
+    },
+    "No photo yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún sin foto"
+          }
+        }
+      }
+    },
+    "Your selfie": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu selfie"
+          }
+        }
+      }
+    },
+    "Your name": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu nombre"
+          }
+        }
+      }
+    },
+    "Name": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre"
+          }
+        }
+      }
+    },
+    "Add your name to continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade tu nombre para continuar"
+          }
+        }
+      }
+    },
+    "That photo didn't work. Try another.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esa foto no ha funcionado. Prueba con otra."
+          }
+        }
+      }
+    },
+    "Looks good": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Me gusta"
+          }
+        }
+      }
+    },
+    "Retake": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Repetir"
+          }
+        }
+      }
+    },
+    "Take photo": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacer foto"
+          }
+        }
+      }
+    },
+    "Choose from library": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir de la galería"
+          }
+        }
+      }
+    },
+    "Choose a photo": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegir una foto"
+          }
+        }
+      }
+    },
+    "Use my initials instead": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mis iniciales"
+          }
+        }
+      }
+    },
+    "Feed the machine with your best reels. Guess who sent what.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alimenta la máquina con tus mejores reels. Adivina quién mandó cuál."
+          }
+        }
+      }
+    },
+    "Edit": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
+        }
+      }
+    },
+    "Create a party": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear una fiesta"
+          }
+        }
+      }
+    },
+    "Party code": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de la fiesta"
+          }
+        }
+      }
+    },
+    "Join a party": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unirse a una fiesta"
+          }
+        }
+      }
+    },
+    "Join my ScrollParty! Party code: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¡Únete a mi ScrollParty! Código de la fiesta: %@"
+          }
+        }
+      }
+    },
+    "Invite": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invitar"
+          }
+        }
+      }
+    },
+    "%lld players": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld jugadores"
+          }
+        }
+      }
+    },
+    "reels sent": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "reels enviados"
+          }
+        }
+      }
+    },
+    "You": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tú"
+          }
+        }
+      }
+    },
+    "Add a reel": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade un reel"
+          }
+        }
+      }
+    },
+    "Paste a reel, TikTok or Short": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega un reel, TikTok o Short"
+          }
+        }
+      }
+    },
+    "Anonymous clue (optional)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pista anónima (opcional)"
+          }
+        }
+      }
+    },
+    "e.g. my mum sent me this": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "p. ej. me lo mandó mi madre"
+          }
+        }
+      }
+    },
+    "Add to the machine": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meter en la máquina"
+          }
+        }
+      }
+    },
+    "Paste an Instagram, TikTok or YouTube link": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega un enlace de Instagram, TikTok o YouTube"
+          }
+        }
+      }
+    },
+    "Your reels": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus reels"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar"
+          }
+        }
+      }
+    },
+    "Start the party": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar la fiesta"
+          }
+        }
+      }
+    },
+    "Waiting for the host to start…": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando a que el anfitrión empiece…"
+          }
+        }
+      }
+    },
+    "Leave party": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de la fiesta"
+          }
+        }
+      }
+    },
+    "Reel %lld of %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reel %lld de %lld"
+          }
+        }
+      }
+    },
+    "Play reel": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reproducir reel"
+          }
+        }
+      }
+    },
+    "Secret vote": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voto secreto"
+          }
+        }
+      }
+    },
+    "Nothing here shows who you picked.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aquí nada muestra a quién has elegido."
+          }
+        }
+      }
+    },
+    "Back": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver"
+          }
+        }
+      }
+    },
+    "%lld of %lld voted": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld han votado"
+          }
+        }
+      }
+    },
+    "Reveal who sent it": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revelar el autor"
+          }
+        }
+      }
+    },
+    "This one’s yours": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este es tuyo"
+          }
+        }
+      }
+    },
+    "Your vote is in · Change": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voto registrado · Cambiar"
+          }
+        }
+      }
+    },
+    "Cast your secret vote": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emite tu voto secreto"
+          }
+        }
+      }
+    },
+    "Reel %lld of %lld · watch the TV": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reel %lld de %lld · mira la tele"
+          }
+        }
+      }
+    },
+    "Who sent it?": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Quién lo mandó?"
+          }
+        }
+      }
+    },
+    "%@ locked in · scroll to change": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ confirmado · desliza para cambiar"
+          }
+        }
+      }
+    },
+    "That’s my guess": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es mi respuesta"
+          }
+        }
+      }
+    },
+    "No vote this round. Keep a straight face and act surprised.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin voto esta ronda. Pon cara de póker y haz como que te sorprendes."
+          }
+        }
+      }
+    },
+    "+%lld tickets": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%lld tiques"
+          }
+        }
+      }
+    },
+    "You got it · +1 ticket": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acertaste · +1 tique"
+          }
+        }
+      }
+    },
+    "Fooled": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engañado"
+          }
+        }
+      }
+    },
+    "Right": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acierto"
+          }
+        }
+      }
+    },
+    "guessed %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "votó a %@"
+          }
+        }
+      }
+    },
+    "See the final tickets": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver los tiques finales"
+          }
+        }
+      }
+    },
+    "Next reel": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente reel"
+          }
+        }
+      }
+    },
+    "Waiting for the host…": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando al anfitrión…"
+          }
+        }
+      }
+    },
+    "Final tickets": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiques finales"
+          }
+        }
+      }
+    },
+    "Top Detective": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mejor detective"
+          }
+        }
+      }
+    },
+    "Master Bluffer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rey del engaño"
+          }
+        }
+      }
+    },
+    "Reel of the Night": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reel de la noche"
+          }
+        }
+      }
+    },
+    "Getting the machine ready…": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparando la máquina…"
+          }
+        }
+      }
+    },
+    "Retry": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reintentar"
+          }
+        }
+      }
+    },
+    "No party with code %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay ninguna fiesta con el código %@"
+          }
+        }
+      }
+    },
+    "In the machine ✓": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la máquina ✓"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

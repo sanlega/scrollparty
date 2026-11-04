@@ -21,7 +21,9 @@ service cloud.firestore {
           && request.resource.data.name is string
           && request.resource.data.name.size() > 0
           && request.resource.data.name.size() <= 30
-          && request.resource.data.count is int;
+          && request.resource.data.count is int
+          && (!('photo' in request.resource.data)
+            || (request.resource.data.photo is string && request.resource.data.photo.size() <= 40000));
       }
 
       // Nadie ve los enlaces de otros hasta la sesión; entonces solo el anfitrión.
@@ -33,7 +35,9 @@ service cloud.firestore {
           && request.resource.data.authorId == request.auth.uid
           && request.resource.data.url is string
           && request.resource.data.url.matches('https://(([a-z]+[.])?(instagram|tiktok|youtube)[.]com|youtu[.]be)/.+')
-          && request.resource.data.url.size() <= 500;
+          && request.resource.data.url.size() <= 500
+          && (!('clue' in request.resource.data)
+            || (request.resource.data.clue is string && request.resource.data.clue.size() <= 80));
         allow delete: if resource.data.authorId == request.auth.uid && group().status == 'collecting';
       }
 
@@ -43,12 +47,17 @@ service cloud.firestore {
         allow delete: if isAdmin();
         allow update: if (isAdmin()
             && request.resource.data.url == resource.data.url
-            && request.resource.data.votes == resource.data.votes)
+            && request.resource.data.votes == resource.data.votes
+            && request.resource.data.get('reactions', {}) == resource.data.get('reactions', {}))
           || (isMember()
             && resource.data.authorId == null
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['votes'])
             && request.resource.data.votes.diff(resource.data.votes).affectedKeys().hasOnly([request.auth.uid])
-            && request.resource.data.votes[request.auth.uid] is string);
+            && request.resource.data.votes[request.auth.uid] is string)
+          || (isMember()
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions'])
+            && request.resource.data.reactions.diff(resource.data.reactions).affectedKeys().hasOnly([request.auth.uid])
+            && request.resource.data.reactions[request.auth.uid] in ['laugh', 'skull', 'fire', 'sleep']);
       }
     }
   }

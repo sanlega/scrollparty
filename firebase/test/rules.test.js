@@ -24,7 +24,7 @@ async function seed(status = 'collecting') {
     await setDoc(doc(f, 'groups/ABC123/members/bob'), member('Bob'));
     await setDoc(doc(f, 'groups/ABC123/members/eva'), member('Eva'));
     await setDoc(doc(f, 'groups/ABC123/links/l1'), { url: 'https://youtu.be/1', authorId: 'bob' });
-    await setDoc(doc(f, 'groups/ABC123/rounds/l1'), { url: 'https://youtu.be/1', authorId: null, votes: {} });
+    await setDoc(doc(f, 'groups/ABC123/rounds/l1'), { url: 'https://youtu.be/1', clue: '', authorId: null, votes: {}, reactions: {} });
   });
 }
 
@@ -101,4 +101,29 @@ test('tras revelar no se puede votar, y el anfitrión no puede alterar votos', a
   await assertFails(updateDoc(round('ana'), { 'votes.eva': 'ana', authorId: 'bob' }));
   await assertSucceeds(updateDoc(round('ana'), { authorId: 'bob' }));
   await assertFails(updateDoc(round('eva'), { 'votes.eva': 'bob' }));
+});
+
+test('la foto del miembro tiene tamaño máximo', async () => {
+  await seed();
+  const zoe = doc(db('zoe'), 'groups/ABC123/members/zoe');
+  await assertSucceeds(setDoc(zoe, { ...member('Zoe'), photo: 'a'.repeat(40000) }));
+  await assertFails(setDoc(zoe, { ...member('Zoe'), photo: 'a'.repeat(40001) }));
+});
+
+test('la pista es opcional y corta', async () => {
+  await seed();
+  const add = (id, clue) => setDoc(doc(db('eva'), `groups/ABC123/links/${id}`), { url: 'https://youtu.be/9', authorId: 'eva', clue });
+  await assertSucceeds(add('p1', 'mi madre me lo mandó'));
+  await assertFails(add('p2', 'x'.repeat(81)));
+});
+
+test('cada jugador reacciona solo por sí mismo, también tras revelar', async () => {
+  await seed('playing');
+  const round = (uid) => doc(db(uid), 'groups/ABC123/rounds/l1');
+  await assertSucceeds(updateDoc(round('eva'), { 'reactions.eva': 'laugh' }));
+  await assertFails(updateDoc(round('eva'), { 'reactions.ana': 'laugh' }));
+  await assertFails(updateDoc(round('eva'), { 'reactions.eva': 'nope' }));
+  await assertFails(updateDoc(round('zoe'), { 'reactions.zoe': 'fire' }));
+  await assertSucceeds(updateDoc(round('ana'), { authorId: 'bob' }));
+  await assertSucceeds(updateDoc(round('bob'), { 'reactions.bob': 'skull' }));
 });

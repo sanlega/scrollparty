@@ -7,9 +7,13 @@ platform :ios do
   desc "Firma, compila y sube un build interno a TestFlight"
   lane :beta do
     app_id = "com.santilega.scrollparty"
+    share_id = "com.santilega.scrollparty.share"
     team_id = ENV.fetch("APPLE_TEAM_ID")
     build_number = ENV.fetch("BUILD_NUMBER")
-    profile = "match AppStore #{app_id}"
+    profiles = {
+      app_id => "match AppStore #{app_id}",
+      share_id => "match AppStore #{share_id}"
+    }
     keychain = "scrollparty_ci"
 
     api_key = app_store_connect_api_key(
@@ -24,9 +28,11 @@ platform :ios do
       issuer_id: ENV.fetch("ASC_ISSUER_ID"),
       key: ENV.fetch("ASC_API_KEY")
     )
-    if Spaceship::ConnectAPI::BundleId.find(app_id).nil?
-      UI.important("Registrando el bundle id #{app_id}")
-      Spaceship::ConnectAPI::BundleId.create(name: "ScrollParty", platform: "IOS", identifier: app_id)
+    { app_id => "ScrollParty", share_id => "ScrollParty Share" }.each do |identifier, bundle_name|
+      next unless Spaceship::ConnectAPI::BundleId.find(identifier).nil?
+
+      UI.important("Registrando el bundle id #{identifier}")
+      Spaceship::ConnectAPI::BundleId.create(name: bundle_name, platform: "IOS", identifier: identifier)
     end
 
     keychain_password = SecureRandom.hex(32)
@@ -40,7 +46,7 @@ platform :ios do
 
     match(
       type: "appstore",
-      app_identifier: [app_id],
+      app_identifier: [app_id, share_id],
       api_key: api_key,
       team_id: team_id,
       storage_mode: "git",
@@ -55,16 +61,18 @@ platform :ios do
       force: ENV["FORCE_PROFILE"].to_s == "true"
     )
 
-    update_code_signing_settings(
-      path: "ScrollParty.xcodeproj",
-      use_automatic_signing: false,
-      targets: ["ScrollParty"],
-      build_configurations: ["Release"],
-      team_id: team_id,
-      code_sign_identity: "Apple Distribution",
-      profile_name: profile,
-      bundle_identifier: app_id
-    )
+    { "ScrollParty" => app_id, "ScrollPartyShare" => share_id }.each do |target, identifier|
+      update_code_signing_settings(
+        path: "ScrollParty.xcodeproj",
+        use_automatic_signing: false,
+        targets: [target],
+        build_configurations: ["Release"],
+        team_id: team_id,
+        code_sign_identity: "Apple Distribution",
+        profile_name: profiles[identifier],
+        bundle_identifier: identifier
+      )
+    end
 
     firebase = {
       "FIREBASE_API_KEY" => ENV.fetch("FIREBASE_API_KEY"),
@@ -82,7 +90,7 @@ platform :ios do
       export_team_id: team_id,
       export_options: {
         signingStyle: "manual",
-        provisioningProfiles: { app_id => profile }
+        provisioningProfiles: profiles
       },
       xcargs: "CURRENT_PROJECT_VERSION=#{build_number} #{firebase}"
     )

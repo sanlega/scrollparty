@@ -51,4 +51,40 @@ class GameTest {
     @Test fun elCodigoTiene6CaracteresDictables() {
         repeat(100) { assertEquals(true, newCode().matches(Regex("[A-HJ-NP-Z2-9]{6}"))) }
     }
+
+    @Test fun elColorSiempreEsLibreMientrasQuedenYValidoSiNo() {
+        repeat(50) {
+            val taken = (0 until 11).toList()
+            assertEquals(11, freeColor(taken))
+            assertEquals(true, freeColor(listOf(0, 1, 2)) in 3..11)
+        }
+        assertEquals(true, freeColor((0 until 12).toList()) in 0..11)
+    }
+
+    @Test fun laTeleSoloLanzaReaccionesNuevasOCambiadas() {
+        val old = mapOf("ana" to "laugh", "bob" to "fire")
+        val new = mapOf("ana" to "laugh", "bob" to "skull", "eva" to "sleep")
+        assertEquals(listOf("skull", "sleep"), reactionChanges(old, new))
+        assertEquals(emptyList<String>(), reactionChanges(new, new))
+    }
+
+    @Test fun reelDeLaNocheEsDelAutorConMasRisasYCalaveras() {
+        val rounds = listOf(
+            Round("1", "u", "ana", emptyMap(), mapOf("bob" to "laugh", "eva" to "fire")),
+            Round("2", "u", "bob", emptyMap(), mapOf("ana" to "laugh", "eva" to "skull")),
+            Round("3", "u", null, emptyMap(), mapOf("ana" to "laugh", "bob" to "laugh", "eva" to "laugh")), // sin revelar: no cuenta
+        )
+        assertEquals("bob", reelOfTheNight(rounds))
+    }
+
+    @Test fun sinRisasNoHayReelDeLaNoche() {
+        assertNull(reelOfTheNight(listOf(Round("1", "u", "ana", emptyMap(), mapOf("bob" to "fire")))))
+        assertNull(reelOfTheNight(emptyList()))
+    }
+
+    @Test fun inicialesDeUnoODosNombres() {
+        assertEquals("A", initials("ana"))
+        assertEquals("AL", initials("  ana lópez  garcía "))
+        assertEquals("", initials("  "))
+    }
 }
