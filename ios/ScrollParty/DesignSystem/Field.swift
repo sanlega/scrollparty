@@ -26,6 +26,11 @@ struct LinkButton: View {
     let action: () -> Void
     @Environment(\.isEnabled) private var isEnabled
 
+    init(_ title: LocalizedStringKey, action: @escaping () -> Void) {
+        self.title = title
+        self.action = action
+    }
+
     var body: some View {
         Button(action: action) {
             Text(title)
